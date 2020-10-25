@@ -1,0 +1,204 @@
+#!/usr/bin/env bash
+
+
+prefix="module_swarm_journal_$2"
+
+
+executionplane --silent docker container prune --force
+
+if [[ "module_swarm_journal_ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ekg_elasticsearch_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ekg_elasticsearch_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_ekg_grafana_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ekg_grafana_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ekg_grafana_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_ingest_logs_journalbeat_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ingest_logs_journalbeat_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ingest_logs_journalbeat_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_ksqldb_ksql_server_queries_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ksqldb_ksql_server_queries_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ksqldb_ksql_server_queries_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_kz_kafka_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_kz_kafka_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_kz_kafka_secrets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_kz_kafka_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_kz_kafka_data_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_kz_kafka_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_kz_zookeeper_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_kz_zookeeper_secrets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_kz_zookeeper_data_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_kz_zookeeper_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_log_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_kz_zookeeper_log_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_kz_zookeeper_log_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_metrics_node_metrics_node_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_metrics_node_metrics_node_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_metrics_node_metrics_node_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_metrics_overlay_metrics_overlay_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_metrics_overlay_metrics_overlay_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_metrics_overlay_metrics_overlay_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_schema_registry_schema_registry_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_schema_registry_schema_registry_secrets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_journal_export_streamsets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_journal_export_streamsets_volume"
+			result=$(docker volume ls | grep "module_swarm_journal_export_streamsets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	

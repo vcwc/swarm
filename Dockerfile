@@ -1,4 +1,4 @@
-ARG  VCW_TAG=7.9.2
+ARG  VCW_TAG=1.0.0
 ARG  VCW_TAG_BASH=5.0.18
 FROM vcwc/bash.wrapper:${VCW_TAG_BASH}
 

@@ -1,0 +1,515 @@
+PUT _template/swarm_metricbeat_overlay
+{
+  "index_patterns": ["swarm_metricbeat_overlay_*"],
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "elasticsearch_cluster_id": {
+        "type": "text",
+        "index": false
+      },
+      "elasticsearch_cluster_name": {
+        "type": "text",
+        "index": false
+      },
+      "elasticsearch_node_id": {
+        "type": "text",
+        "index": false
+      },
+      "elasticsearch_node_jvm_memory_heap_init_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "elasticsearch_node_jvm_memory_heap_max_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "elasticsearch_node_jvm_memory_nonheap_init_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "elasticsearch_node_jvm_memory_nonheap_max_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "elasticsearch_node_jvm_version": {
+        "type": "text",
+        "index": false
+      },
+      "elasticsearch_node_name": {
+        "type": "text",
+        "index": false
+      },
+      "elasticsearch_node_process_mlockall": {
+        "type": "boolean",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_fs_summary_available_bytes": {
+        "type": "float",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_fs_summary_free_bytes": {
+        "type": "float",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_fs_summary_total_bytes": {
+        "type": "float",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_indices_docs_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_indices_docs_deleted": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_indices_segments_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_indices_segments_memory_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_indices_store_size_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_gc_collectors_old_collection_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_gc_collectors_old_collection_ms": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_gc_collectors_young_collection_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_gc_collectors_young_collection_ms": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_old_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_old_peak_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_old_peak_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_old_used_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_survivor_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_survivor_peak_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_survivor_peak_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_survivor_used_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_young_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_young_peak_bytes": {
+        "type": "long"
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_young_peak_max_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_stats_jvm_mem_pools_young_used_bytes": {
+        "type": "long",
+        "index": false
+
+      },
+      "elasticsearch_node_version": {
+        "type": "text",
+        "index": false
+      },
+      "event_dataset": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "event_module": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kafka_broker_address": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_broker_id": {
+        "type": "long",
+        "index": false
+      },
+      "kafka_consumergroup_broker_address": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_consumergroup_broker_id": {
+        "type": "long",
+        "index": false
+      },
+      "kafka_consumergroup_client_host": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_consumergroup_client_id": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kafka_consumergroup_client_member_id": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_consumergroup_error_code": {
+        "type": "long",
+        "index": false
+      },
+      "kafka_consumergroup_id": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kafka_consumergroup_meta": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_consumergroup_offset": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_consumergroup_partition": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_consumergroup_topic": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_partition_broker_address": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_partition_broker_id": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_id": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_offset_newest": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_offset_oldest": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_partition_id": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_partition_insync_replica": {
+        "type": "boolean",
+        "index": false
+
+      },
+      "kafka_partition_partition_is_leader": {
+        "type": "boolean",
+        "index": false
+
+      },
+      "kafka_partition_partition_leader": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_partition_replica": {
+        "type": "long",
+        "index": false
+
+      },
+      "kafka_partition_topic_broker_id": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_partition_topic_id": {
+        "type": "text",
+        "index": false
+      },
+      "kafka_partition_topic_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kafka_topic_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kibana_status_metrics_concurrent_connections": {
+        "type": "long",
+        "index": false
+
+      },
+      "kibana_status_metrics_requests_disconnects": {
+        "type": "long",
+        "index": false
+
+      },
+      "kibana_status_metrics_requests_total": {
+        "type": "long",
+        "index": false
+
+      },
+      "kibana_status_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "kibana_status_status_overall_state": {
+        "type": "text",
+        "index": false
+      },
+      "node": {
+        "type": "text",
+        "index": false
+      },
+      "origin": {
+        "type": "text",
+        "index": false
+      },
+      "overlay": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "zookeeper_mntr_approximate_data_size": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_ephemerals_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_latency_avg": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_latency_max": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_latency_min": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_max_file_descriptor_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_num_alive_connections": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_open_file_descriptor_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_outstanding_requests": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_packets_received": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_packets_sent": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_server_state": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "zookeeper_mntr_watch_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_mntr_znode_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_connections": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_epoch": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_latency_avg": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_latency_max": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_latency_min": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_mode": {
+        "type": "text",
+        "index": false
+      },
+      "zookeeper_server_node_count": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_outstanding": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_received": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_sent": {
+        "type": "long",
+        "index": false
+
+      },
+      "zookeeper_server_version_date": {
+        "type": "text",
+        "index": false
+      },
+      "zookeeper_server_zxid": {
+        "type": "text",
+        "index": false
+      }
+    }
+  }
+}

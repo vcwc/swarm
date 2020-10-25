@@ -1,0 +1,111 @@
+PUT _template/container_source_wrapper
+{
+  "index_patterns": ["container_source_wrapper_*"],
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "base": {
+        "type": "text",
+        "index": false
+      },
+      "containerid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "containerlid": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ecosystem": {
+        "type": "text",
+        "index": false
+      },
+      "ecs": {
+        "properties": {
+          "version": {
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+      "entrypoint": {
+        "type": "text",
+        "index": false
+      },
+      "level": {
+        "type": "text",
+        "index": false
+      },
+      "message": {
+        "type": "text",
+        "index": false
+      },
+      "node": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "origin": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "realm": {
+        "type": "text",
+        "index": false
+      },
+      "source": {
+        "type": "text",
+        "index": false
+      },
+      "status": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "stream": {
+        "type": "text",
+        "index": false
+      },
+      "tag": {
+        "type": "text",
+        "index": false
+      },
+      "topic": {
+        "type": "text",
+        "index": false
+      },
+      "uptime-seconds": {
+        "type": "text",
+        "index": false
+      }
+    }
+  }
+}

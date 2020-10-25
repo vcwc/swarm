@@ -1,0 +1,6 @@
+ekg_elasticsearch_volume:/usr/share/elasticsearch/data
+ekg_grafana_volume:/var/lib/grafana
+metrics_monitor_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d
+export_streamsets_volume:/data
+processor_streamsets_volume:/data
+

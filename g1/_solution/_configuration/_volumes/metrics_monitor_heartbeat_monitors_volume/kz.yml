@@ -1,0 +1,30 @@
+
+- type: tcp
+  id: internal_kz_kafka
+  name: KZ Kafka Internal
+  hosts: ["module_swarm_g1_kz_kafka"]
+  ports: [9092]
+#  check.send: 'Hello World'
+#  check.receive: 'Hello World'
+  schedule: '@every 30s'
+  fields:
+    scope: "swarm_g1"
+    stack: kz
+    type: external
+    service: kafka
+    area: endpoint
+
+- type: tcp
+  id: internal_kz_zookeeper
+  name: KZ Zookeeper Internal
+  hosts: ["module_swarm_g1_kz_zookeeper"]
+  ports: [2181]
+#  check.send: 'Hello World'
+#  check.receive: 'Hello World'
+  schedule: '@every 30s'
+  fields:
+    scope: "swarm_g1"
+    stack: kz
+    type: external
+    service: kafka
+    area: endpoint

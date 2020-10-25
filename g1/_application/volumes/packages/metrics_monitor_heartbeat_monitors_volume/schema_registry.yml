@@ -1,0 +1,28 @@
+- type: http
+  id: external_schema_registry_endpoint
+  name: Schema Registry External
+  hosts: ["http://${CONTECO_HOSTNAME}/package/schema_registry/rest"]
+  check.response.status: [301]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: schema_registry
+    type: external
+    service: schema_registry
+    area: endpoint
+
+
+
+
+- type: http
+  id: internal_schema_registry_endpoint
+  name: Schema Registry Internal
+  hosts: ["http://package_metrics_monitor_schema_registry:8081"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: schema_registry
+    type: internal
+    service: schema_registry
+    area: endpoint

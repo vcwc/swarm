@@ -1,0 +1,598 @@
+PUT _template/container_settings_config
+{
+  "order" : 0,
+  "index_patterns" : [
+    "container_settings_config_*"
+  ],
+  "settings" : {
+    "index" : {
+      "number_of_shards" : "1"
+    }
+  },
+  "mappings" : {
+    "properties" : {
+      "containerlid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "input" : {
+        "properties" : {
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "node" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "agent" : {
+        "properties" : {
+          "hostname" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "name" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "id" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ephemeral_id" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "@timestamp" : {
+        "type" : "date"
+      },
+      "ecs" : {
+        "properties" : {
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "@metadata" : {
+        "properties" : {
+          "beat" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "topic" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "origin" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "source" : {
+        "index" : false,
+        "type" : "text"
+      },
+      "containerid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "config" : {
+        "properties" : {
+          "HasBeenManuallyStopped" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "Config" : {
+            "properties" : {
+              "User" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "Entrypoint" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "AttachStderr" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Hostname" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "Labels" : {
+                "properties" : {
+                  "io" : {
+                    "properties" : {
+                      "vcweb" : {
+                        "properties" : {
+                          "ecosystem" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "build" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "name" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "description" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "realm" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "label" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "tag" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "repository" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "schema-version" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "type" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "base" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "docker" : {
+                            "properties" : {
+                              "cmd" : {
+                                "properties" : {
+                                  "help" : {
+                                    "index" : false,
+                                    "type" : "text"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "OpenStdin" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Env" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "Image" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "StdinOnce" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "AttachStdout" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "WorkingDir" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "AttachStdin" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Domainname" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "Tty" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Cmd" : {
+                "index" : false,
+                "type" : "text"
+              }
+            }
+          },
+          "AppArmorProfile" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Driver" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "HostsPath" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "NoNewPrivileges" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "HostnamePath" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Image" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "SeccompProfile" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Created" : {
+            "index" : false,
+            "type" : "date"
+          },
+          "Name" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "MountLabel" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ID" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ShmPath" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Path" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Args" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ProcessLabel" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "OS" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "StreamConfig" : {
+            "type" : "object"
+          },
+          "RestartCount" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "MountPoints" : {
+            "properties" : {
+              "/conteco/pwd" : {
+                "properties" : {
+                  "Destination" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "Type" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "RW" : {
+                    "index" : false,
+                    "type" : "boolean"
+                  },
+                  "Relabel" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "SkipMountpointCreation" : {
+                    "index" : false,
+                    "type" : "boolean"
+                  },
+                  "Driver" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "ID" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "Spec" : {
+                    "properties" : {
+                      "Target" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Type" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Source" : {
+                        "index" : false,
+                        "type" : "text"
+                      }
+                    }
+                  },
+                  "Source" : {
+                    "index" : false,
+                    "type" : "text"
+                  },
+                  "Name" : {
+                    "index" : false,
+                    "type" : "text"
+                  }
+                }
+              },
+              "/var/run/docker" : {
+                "properties" : {
+                  "sock" : {
+                    "properties" : {
+                      "Destination" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Type" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Propagation" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "RW" : {
+                        "index" : false,
+                        "type" : "boolean"
+                      },
+                      "SkipMountpointCreation" : {
+                        "index" : false,
+                        "type" : "boolean"
+                      },
+                      "Driver" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Spec" : {
+                        "properties" : {
+                          "Target" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "Type" : {
+                            "index" : false,
+                            "type" : "text"
+                          },
+                          "Source" : {
+                            "index" : false,
+                            "type" : "text"
+                          }
+                        }
+                      },
+                      "Source" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "Name" : {
+                        "index" : false,
+                        "type" : "text"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "NetworkSettings" : {
+            "properties" : {
+              "HairpinMode" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Networks" : {
+                "properties" : {
+                  "bridge" : {
+                    "properties" : {
+                      "Gateway" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "GlobalIPv6Address" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "EndpointID" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "IPAMOperational" : {
+                        "index" : false,
+                        "type" : "boolean"
+                      },
+                      "GlobalIPv6PrefixLen" : {
+                        "index" : false,
+                        "type" : "long"
+                      },
+                      "IPPrefixLen" : {
+                        "index" : false,
+                        "type" : "long"
+                      },
+                      "IPv6Gateway" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "IPAddress" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "MacAddress" : {
+                        "index" : false,
+                        "type" : "text"
+                      },
+                      "NetworkID" : {
+                        "index" : false,
+                        "type" : "text"
+                      }
+                    }
+                  }
+                }
+              },
+              "LinkLocalIPv6Address" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "LinkLocalIPv6PrefixLen" : {
+                "index" : false,
+                "type" : "long"
+              },
+              "SandboxKey" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "HasSwarmEndpoint" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Ports" : {
+                "type" : "object"
+              },
+              "Bridge" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "IsAnonymousEndpoint" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "SandboxID" : {
+                "index" : false,
+                "type" : "text"
+              }
+            }
+          },
+          "HasBeenStartedBefore" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "ResolvConfPath" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "State" : {
+            "properties" : {
+              "Restarting" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Dead" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "ExitCode" : {
+                "index" : false,
+                "type" : "long"
+              },
+              "Running" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Error" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "FinishedAt" : {
+                "index" : false,
+                "type" : "date"
+              },
+              "OOMKilled" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "Pid" : {
+                "index" : false,
+                "type" : "long"
+              },
+              "RemovalInProgress" : {
+                "index" : false,
+                "type" : "boolean"
+              },
+              "StartedAt" : {
+                "index" : false,
+                "type" : "date"
+              },
+              "Paused" : {
+                "index" : false,
+                "type" : "boolean"
+              }
+            }
+          },
+          "LogPath" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Managed" : {
+            "index" : false,
+            "type" : "boolean"
+          }
+        }
+      }
+    }
+  },
+  "aliases" : { }
+}

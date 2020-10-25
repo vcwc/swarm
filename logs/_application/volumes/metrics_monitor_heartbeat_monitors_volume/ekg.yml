@@ -1,0 +1,41 @@
+
+- type: http
+  id: external_ekg_kibana_endpoint
+  name: EKG Kibana External
+  hosts: ["http://${CONTECO_HOSTNAME}/swarm/ekg/kibana"]
+  check.response.status: [301]
+  schedule: '@every 30s'
+  fields:
+    scope: "swarm_logs"
+    stack: ekg
+    type: external
+    service: kibana
+    area: endpoint
+
+
+
+- type: http
+  id: internal_ekg_elasticsearch_endpoint
+  name: EKG ElasticSearch Internal
+  hosts: ["http://module_swarm_logs_ekg_elasticsearch:9200"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "swarm_logs"
+    stack: ekg
+    type: internal
+    service: elasticsearchhttp://
+    area: rest_api
+
+- type: http
+  id: internal_ekg_kibana_endpoint
+  name: EKG Kibana Internal
+  hosts: ["http://module_swarm_logs_ekg_kibana:5601"]
+  check.response.status: [302]
+  schedule: '@every 30s'
+  fields:
+    scope: "swarm_logs"
+    stack: ekg
+    type: internal
+    service: kibana
+    area: endpoint

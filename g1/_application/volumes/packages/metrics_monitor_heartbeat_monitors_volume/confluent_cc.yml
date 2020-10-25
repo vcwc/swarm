@@ -1,0 +1,28 @@
+- type: http
+  id: external_confluent_control_center_endpoint
+  name: Confluent Control Center External
+  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: confluent_cc
+    type: external
+    service: control_center
+    area: endpoint
+
+
+
+
+- type: http
+  id: internal_confluent_control_center_endpoint
+  name: Confluent Control Center Internal
+  hosts: ["http://package_metrics_monitor_confluent_control_center:9021"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: confluent_cc
+    type: internal
+    service: control_center
+    area: endpoint

@@ -1,0 +1,28 @@
+- type: http
+  id: external_kafka_rest_endpoint
+  name: Kafka REST External
+  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: kafka_rest
+    type: external
+    service: kafka_rest
+    area: endpoint
+
+
+
+
+#- type: http
+#  id: internal_kafka_rest_endpoint
+#  name: Kafka REST Internal
+#  hosts: ["http://package_metrics_monitor_kafka_rest_kafka_rest:8082"]
+#  check.response.status: [200]
+#  schedule: '@every 30s'
+#  fields:
+#    scope: "package_metrics_monitor"
+#    stack: kafka_rest
+#    type: internal
+#    service: kafka_rest
+#    area: endpoint

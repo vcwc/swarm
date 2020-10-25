@@ -1,0 +1,3 @@
+boot/shutdown,rest_elasticsearch,rest_elasticsearch,rest_elasticsearch
+start/stop,rest_elasticsearch,rest_elasticsearch,rest_elasticsearch
+

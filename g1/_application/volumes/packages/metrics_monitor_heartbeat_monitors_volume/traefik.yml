@@ -1,0 +1,23 @@
+- type: http
+  id: external_traefik_gateway
+  name: External Traefik Gateway
+  hosts: ["http://${CONTECO_HOSTNAME}:80"]
+  check.response.status: [404]
+  schedule: '@every 30s'
+  fields:
+    scope: "traefik_g1"
+    type: external
+    service: traefik
+    area: gateway
+
+- type: http
+  id: internal_traefik_dashboard
+  name: Internal Traefik Dashboard
+  hosts: ["http://${CONTECO_HOSTNAME}:8080/dashboard"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "traefik_g1"
+    type: internal
+    service: traefik
+    area: dashboard

@@ -1,0 +1,49 @@
+---
+version: '3'
+services:
+
+# START SERVICE kafka.base
+  kafka:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.kafka.base:5.4.0
+    environment: ['KAFKA_HEAP_OPTS=-Xmx${KZ_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${KZ_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}','KAFKA_BROKER_ID=1','KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181','KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092${KZ_KAFKA_KAFKA_ADVERTISED_LISTENERS}','KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT${KZ_KAFKA_KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}','KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT','KAFKA_AUTO_CREATE_TOPICS_ENABLE=true','KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1','KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0','KAFKA_MIN_INSYNC_REPLICAS=1','KAFKA_DEFAULT_REPLICATION_FACTOR=1','KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1','KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1','KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1','CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka:9092','CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:2181','CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1','CONFLUENT_METRICS_ENABLE: "true"','CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"','KAFKA_LOG_RETENTION_HOURS=1']
+    command: []
+    volumes: ['${CONTECO_STACKPREFIX}_kafka_secrets_volume:/etc/kafka/secrets','${CONTECO_STACKPREFIX}_kafka_data_volume:/var/lib/kafka/data']
+    ports: [${KZ_KAFKA_PORTS}]
+    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${KZ_KAFKA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${KZ_KAFKA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${KZ_KAFKA_COMPOSE_EXTENSIONS}
+# END SERVICE kafka.base
+
+# START SERVICE zookeeper.base
+  zookeeper:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.zookeeper.base:5.4.0
+    environment: ['ZOOKEEPER_CLIENT_PORT=2181','ZOOKEEPER_TICK_TIME=2000']
+    command: []
+    volumes: ['${CONTECO_STACKPREFIX}_zookeeper_secrets_volume:/etc/zookeeper/secrets','${CONTECO_STACKPREFIX}_zookeeper_data_volume:/var/lib/zookeeper/data','${CONTECO_STACKPREFIX}_zookeeper_log_volume:/var/lib/zookeeper/log']
+    ports: []
+    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          cpus: '${KZ_ZOOKEEPER_DEPLOY_RESOURCES_LIMITS_CPUS}'
+          memory: '${KZ_ZOOKEEPER_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          cpus: '${KZ_ZOOKEEPER_DEPLOY_RESOURCES_RESERVATIONS_CPUS}'
+          memory: '${KZ_ZOOKEEPER_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      placement:
+        constraints: [${KZ_ZOOKEEPER_DEPLOY_PLACEMENT_CONSTRAINTS}]
+      ${KZ_BASH_DEPLOY_EXTENSIONS}
+    ${KZ_BASH_SERVICE_EXTENSIONS}
+# END SERVICE zookeeper.base
+
+networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${CONTECO_STACKPREFIX}_kafka_secrets_volume: { external: true },${CONTECO_STACKPREFIX}_kafka_data_volume: { external: true },${CONTECO_STACKPREFIX}_zookeeper_secrets_volume: { external: true },${CONTECO_STACKPREFIX}_zookeeper_data_volume: { external: true },${CONTECO_STACKPREFIX}_zookeeper_log_volume: { external: true }}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}
+

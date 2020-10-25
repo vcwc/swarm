@@ -1,0 +1,12 @@
+- type: http
+  id: external_registry_endpoint
+  name: External Registry Endpoint
+  hosts: ["http://${CONTECO_HOSTNAME}:5000"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: registry
+    type: external
+    service: registry
+    area: endpoint

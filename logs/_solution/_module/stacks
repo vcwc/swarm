@@ -1,0 +1,9 @@
+boot/shutdown,ekg,ekg,ekg
+start/stop,ekg,ekg,ekg_rest_elasticsearch
+start/stop,ekg,ekg,ekg_ui_kibana
+start/stop,ingest_file,ingest_container_logs,ingest_container_logs
+boot/shutdown,kz,kz,kz
+start/stop,metrics_monitor,metrics_monitor,metrics_monitor
+boot/shutdown,streamsets,processor,processor
+start/stop,streamsets,processor,processor_ui_streamsets
+

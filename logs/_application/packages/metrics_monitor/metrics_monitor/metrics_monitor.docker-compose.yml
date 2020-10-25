@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE heartbeat.base
+  heartbeat:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.heartbeat.base:7.8.0
+    environment: []
+    command: []
+    volumes: ['/etc:/hostfs/etc:ro','${CONTECO_STACKPREFIX}_heartbeat_data_volume:/usr/share/heartbeat/data','${CONTECO_STACKPREFIX}_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d']
+    ports: []
+    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${METRICS_MONITOR_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${METRICS_MONITOR_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${METRICS_MONITOR_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${METRICS_MONITOR_COMPOSE_EXTENSIONS}
+# END SERVICE heartbeat.base
+
+networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${CONTECO_STACKPREFIX}_heartbeat_data_volume: { external: true }, ${CONTECO_STACKPREFIX}_heartbeat_monitors_volume: { external: true }}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

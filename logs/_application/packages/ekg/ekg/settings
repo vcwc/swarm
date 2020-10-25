@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# START CONFIGURATION
+export CONTECO_DC_GLOBAL_PACKAGE_CONTECO="module.ekg"
+export CONTECO_DC_GLOBAL_PACKAGE_TAG="7.8.0"
+export CONTECO_DC_GLOBAL_STACKNAMES="ekg,ekg_rest_elasticsearch,ekg_ui_kibana"
+export CONTECO_DC_GLOBAL_BOOTSTACKS="ekg"
+export CONTECO_DC_GLOBAL_RUNSTACKS="ekg_rest_elasticsearch,ekg_ui_kibana"
+export CONTECO_DC_GLOBAL_VOLUME_LIST="${CONTECO_STACKPREFIX}_elasticsearch_volume,${CONTECO_STACKPREFIX}_grafana_volume"
+export CONTECO_DC_GLOBAL_VOLUME_INITIALISED="${CONTECO_STACKPREFIX}_elasticsearch_volume:/usr/share/elasticsearch/data"
+# END CONFIGURATION
+
+export EKG_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_MEMORY="1536m"
+export EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY="1024m"

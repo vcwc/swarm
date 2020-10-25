@@ -1,0 +1,318 @@
+PUT _template/container_settings_hostconfig
+{
+  "order" : 0,
+  "index_patterns" : [
+    "container_settings_hostconfig_*"
+  ],
+  "settings" : {
+    "index" : {
+      "number_of_shards" : "1"
+    }
+  },
+  "mappings" : {
+    "properties" : {
+      "containerlid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "hostconfig" : {
+        "properties" : {
+          "ReadonlyRootfs" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "DiskQuota" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "OomKillDisable" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "IOMaximumBandwidth" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "Memory" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "Privileged" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "CpuPeriod" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "PortBindings" : {
+            "type" : "object"
+          },
+          "AutoRemove" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "MaskedPaths" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "BlkioWeight" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "CpuPercent" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "ConsoleSize" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "IOMaximumIOps" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "Runtime" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "VolumeDriver" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CpuCount" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "PublishAllPorts" : {
+            "index" : false,
+            "type" : "boolean"
+          },
+          "UsernsMode" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CpusetCpus" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CpuRealtimePeriod" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "IpcMode" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "MemoryReservation" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "Binds" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CpusetMems" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ReadonlyPaths" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "UTSMode" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Cgroup" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "RestartPolicy" : {
+            "properties" : {
+              "MaximumRetryCount" : {
+                "index" : false,
+                "type" : "long"
+              },
+              "Name" : {
+                "index" : false,
+                "type" : "text"
+              }
+            }
+          },
+          "CpuQuota" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "CpuRealtimeRuntime" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "NetworkMode" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "PidMode" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CgroupParent" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "CpuShares" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "NanoCpus" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "MemorySwap" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "ContainerIDFile" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "Isolation" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "PidsLimit" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "OomScoreAdj" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "ShmSize" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "KernelMemory" : {
+            "index" : false,
+            "type" : "long"
+          },
+          "LogConfig" : {
+            "properties" : {
+              "Type" : {
+                "index" : false,
+                "type" : "text"
+              },
+              "Config" : {
+                "type" : "object"
+              }
+            }
+          }
+        }
+      },
+      "input" : {
+        "properties" : {
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "node" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "agent" : {
+        "properties" : {
+          "hostname" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "name" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "id" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "ephemeral_id" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "@timestamp" : {
+        "type" : "date"
+      },
+      "ecs" : {
+        "properties" : {
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "@metadata" : {
+        "properties" : {
+          "beat" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "topic" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "type" : {
+            "index" : false,
+            "type" : "text"
+          },
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "origin" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "source" : {
+        "index" : false,
+        "type" : "text"
+      },
+      "containerid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      }
+    }
+  },
+  "aliases" : { }
+}

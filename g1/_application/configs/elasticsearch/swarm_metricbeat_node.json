@@ -1,0 +1,866 @@
+PUT _template/swarm_metricbeat_node
+{
+  "index_patterns": ["swarm_metricbeat_node_*"],
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "container_id": {
+        "type": "text",
+        "index": false
+      },
+      "container_image_name": {
+        "type": "text",
+        "index": false
+      },
+      "container_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "container_runtime": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_command": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_created": {
+        "type": "date"
+      },
+      "docker_container_ip_addresses_0": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_ip_addresses_1": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_ip_addresses_2": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_stack_namespace": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_node_id": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_service_id": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_service_name": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_task": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_task_id": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_com_docker_swarm_task_name": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_description": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_confluent_docker": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_confluent_docker_build_number": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_confluent_docker_git_id": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_base": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_build": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_description": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_docker_cmd_help": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_ecosystem": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_label": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_name": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_realm": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_repository": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_schema-version": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_tag": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_io_vcweb_type": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_license": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_maintainer": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_build-date": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_license": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_name": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_schema-version": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_url": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_vcs-ref": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_vcs-url": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_vendor": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_label-schema_version": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_description": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_documentation": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_title": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_url": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_vendor": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_labels_org_opencontainers_image_version": {
+        "type": "text",
+        "index": false
+      },
+      "docker_container_size_root_fs": {
+        "type": "long",
+        "index": false
+      },
+      "docker_container_size_rw": {
+        "type": "long",
+        "index": false
+      },
+      "docker_container_status": {
+        "type": "text",
+        "index": false
+      },
+      "docker_cpu_kernel_pct": {
+        "type": "long",
+        "index": false
+      },
+      "docker_cpu_kernel_ticks": {
+        "type": "float",
+        "index": false
+      },
+      "docker_cpu_system_pct": {
+        "type": "long",
+        "index": false
+      },
+      "docker_cpu_system_ticks": {
+        "type": "float",
+        "index": false
+      },
+      "docker_cpu_total_pct": {
+        "type": "float",
+        "index": false
+      },
+      "docker_cpu_user_pct": {
+        "type": "long",
+        "index": false
+      },
+      "docker_cpu_user_ticks": {
+        "type": "float",
+        "index": false
+      },
+      "docker_diskio_read_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_read_ops": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_read_rate": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_reads": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_summary_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_summary_ops": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_summary_rate": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_total": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_write_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_write_ops": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_write_rate": {
+        "type": "long",
+        "index": false
+      },
+      "docker_diskio_writes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_info_containers_paused": {
+        "type": "long",
+        "index": false
+      },
+      "docker_info_containers_running": {
+        "type": "long",
+        "index": false
+      },
+      "docker_info_containers_stopped": {
+        "type": "long",
+        "index": false
+      },
+      "docker_info_containers_total": {
+        "type": "long",
+        "index": false
+      },
+      "docker_info_id": {
+        "type": "text",
+        "index": false
+      },
+      "docker_info_images": {
+        "type": "long",
+        "index": false
+      },
+      "docker_memory_fail_count": {
+        "type": "long",
+        "index": false
+      },
+      "docker_memory_limit": {
+        "type": "long",
+        "index": false
+      },
+      "docker_memory_rss_pct": {
+        "type": "float",
+        "index": false
+      },
+      "docker_memory_rss_total": {
+        "type": "long",
+        "index": false
+      },
+      "docker_memory_usage_max": {
+        "type": "long",
+        "index": false
+      },
+      "docker_memory_usage_pct": {
+        "type": "float",
+        "index": false
+      },
+      "docker_memory_usage_total": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_in_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_in_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_in_errors": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_in_packets": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_inbound_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_inbound_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_inbound_errors": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_inbound_packets": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_interface": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "docker_network_out_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_out_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_out_errors": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_out_packets": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_outbound_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_outbound_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_outbound_errors": {
+        "type": "long",
+        "index": false
+      },
+      "docker_network_outbound_packets": {
+        "type": "long",
+        "index": false
+      },
+      "event_dataset": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "event_module": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "node": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "origin": {
+        "type": "text",
+        "index": false
+      },
+      "system_cpu_cores": {
+        "type": "long",
+        "index": false
+      },
+      "system_cpu_idle_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_cpu_iowait_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_cpu_irq_norm_pct": {
+        "type": "long",
+        "index": false
+      },
+      "system_cpu_nice_norm_pct": {
+        "type": "long",
+        "index": false
+      },
+      "system_cpu_softirq_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_cpu_steal_norm_pct": {
+        "type": "long",
+        "index": false
+      },
+      "system_cpu_system_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_cpu_total_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_cpu_user_norm_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_diskio_io_time": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_await": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_busy": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_queue_avg_size": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_read_await": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_read_per_sec_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_read_request_merges_per_sec": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_read_request_per_sec": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_request_avg_size": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_service_time": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_write_await": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_write_per_sec_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_write_request_merges_per_sec": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_iostat_write_request_per_sec": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "system_diskio_read_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_read_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_read_time": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_write_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_write_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_diskio_write_time": {
+        "type": "long",
+        "index": false
+      },
+      "system_filesystem_available": {
+        "type": "float",
+        "index": false
+      },
+      "system_filesystem_device_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "system_filesystem_files": {
+        "type": "long",
+        "index": false
+      },
+      "system_filesystem_free": {
+        "type": "float",
+        "index": false
+      },
+      "system_filesystem_free_files": {
+        "type": "long",
+        "index": false
+      },
+      "system_filesystem_mount_point": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "system_filesystem_total": {
+        "type": "float",
+        "index": false
+      },
+      "system_filesystem_type": {
+        "type": "text",
+        "index": false
+      },
+      "system_filesystem_used_bytes": {
+        "type": "float",
+        "index": false
+      },
+      "system_filesystem_used_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_fsstat_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_fsstat_total_files": {
+        "type": "long",
+        "index": false
+      },
+      "system_fsstat_total_size_free": {
+        "type": "float",
+        "index": false
+      },
+      "system_fsstat_total_size_total": {
+        "type": "float",
+        "index": false
+      },
+      "system_fsstat_total_size_used": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_1": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_15": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_5": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_cores": {
+        "type": "long",
+        "index": false
+      },
+      "system_load_norm_1": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_norm_15": {
+        "type": "float",
+        "index": false
+      },
+      "system_load_norm_5": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_actual_free": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_actual_used_bytes": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_actual_used_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_free": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_default_size": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_free": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_reserved": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_surplus": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_total": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_used_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_hugepages_used_pct": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_swap_free": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_swap_total": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_swap_used_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_memory_swap_used_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_total": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_used_bytes": {
+        "type": "float",
+        "index": false
+      },
+      "system_memory_used_pct": {
+        "type": "float",
+        "index": false
+      },
+      "system_network_in_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_in_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_in_errors": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_in_packets": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "system_network_out_bytes": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_out_dropped": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_out_errors": {
+        "type": "long",
+        "index": false
+      },
+      "system_network_out_packets": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_dead": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_idle": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_running": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_sleeping": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_stopped": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_total": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_unknown": {
+        "type": "long",
+        "index": false
+      },
+      "system_process_summary_zombie": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_all_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_all_listening": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_tcp_all_close_wait": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_tcp_all_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_tcp_all_established": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_tcp_all_listening": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_tcp_all_time_wait": {
+        "type": "long",
+        "index": false
+      },
+      "system_socket_summary_udp_all_count": {
+        "type": "long",
+        "index": false
+      },
+      "system_uptime_duration_ms": {
+        "type": "long",
+        "index": false
+      }
+    }
+  }
+}

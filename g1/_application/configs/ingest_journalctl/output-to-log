@@ -1,0 +1,28 @@
+daystokeep="$1"
+marker="journalctl_$(date -d "-$daystokeep days"  +"%Y-%m-%d_%H")"
+for f in /infometis/journalctl/data/*
+do
+  filename=$(basename $f)
+  if [[ "$filename" < "$marker" ]] ; then
+    rm $f
+  fi
+let 'counter=0'
+done;
+
+counter=0
+while read -r INPUT
+do
+  let 'counter=counter+1'
+  echo "$INPUT" >> "/infometis/journalctl/data/journalctl_$(date +"%Y-%m-%d_%H").log";
+  if (( counter > 10000 )) ; then
+    marker=/journalctl_$(date -d "+$daystokeep days"  +"%Y-%m-%d_%H")
+    for f in /infometis/journalctl/data/*
+    do
+      filename=$(basename $f)
+      if [[ "$filename" < "$marker" ]] ; then
+        rm $f
+      fi
+    done;
+    let 'counter=0'
+  fi
+done;

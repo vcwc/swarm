@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+
+
+executionplane --silent docker container prune --force
+
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume"
+	result=$(docker volume ls | grep "swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	

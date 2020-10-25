@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+
+# START SERVICE nginx.rewrite
+  nginx:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.nginx.rewrite:1.19.3
+    environment: ['CONTECO_NGINX_CONF_LOCATION=/${CONTECO_URLPREFIX}/streamsets', 'CONTECO_NGINX_CONF_PROXY_PASS=${CONTECO_STACKPREFIX}_streamsets:18630']
+    command: []
+    volumes: []
+    ports: []
+    networks: [${CONTECO_NETWORKGLOBAL}_overlay, ${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${CONTECO_DC_STREAMSETS_UI_STREAMSETS_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${CONTECO_DC_STREAMSETS_UI_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${CONTECO_NETWORKGLOBAL}_overlay, traefik.http.services.${CONTECO_STACKPREFIX}_nginx.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_STACKPREFIX}_nginx.entrypoints=conteco, traefik.http.routers.${CONTECO_STACKPREFIX}_nginx.rule=PathPrefix("/${CONTECO_URLPREFIX}/streamsets")]
+${CONTECO_DC_STREAMSETS_UI_STREAMSETS_COMPOSE_EXTENSIONS}
+# END SERVICE nginx.rewrite
+
+networks: {${CONTECO_NETWORKGLOBAL}_overlay: { external: true }, ${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

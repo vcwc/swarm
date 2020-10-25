@@ -1,0 +1,28 @@
+- type: http
+  id: external_kafka_connect_endpoint
+  name: Kafka Connect External
+  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: kafka_connect
+    type: external
+    service: kafka_connect
+    area: endpoint
+
+
+
+
+- type: http
+  id: internal_kafka_connect_endpoint
+  name: Kafka Connect Internal
+  hosts: ["http://package_metrics_monitor_kafka_rest_kafka_rest:8083"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: kafka_connect
+    type: internal
+    service: kafka_connect
+    area: endpoint

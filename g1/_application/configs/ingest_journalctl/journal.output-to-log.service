@@ -1,0 +1,8 @@
+[Unit]
+After=
+
+[Service]
+ExecStart=/infometis/journalctl/journalctl-output-to-log
+
+[Install]
+WantedBy=default.target

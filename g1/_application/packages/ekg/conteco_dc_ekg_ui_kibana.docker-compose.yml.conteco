@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+
+# START SERVICE nginx.rewrite
+  nginx:
+    image: ${CONTECO_REGISTRY}${CONTECO_REALM_RUNTIME}/conteco.nginx.rewrite:1.17.3
+    environment: ['CONTECO_NGINX_CONF_LOCATION=/${CONTECO_URLPREFIX}/kibana', 'CONTECO_NGINX_CONF_PROXY_PASS=${CONTECO_STACKPREFIX}_kibana:5601']
+    command: []
+    volumes: []
+    ports: []
+    networks: [${CONTECO_NETWORKGLOBAL}_overlay, ${CONTECO_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${CONTECO_DC_EKG_UI_KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${CONTECO_DC_EKG_UI_KIBANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${CONTECO_NETWORKGLOBAL}_overlay, traefik.http.services.${CONTECO_STACKPREFIX}_kibana.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_STACKPREFIX}_kibana.entrypoints=conteco, traefik.http.routers.${CONTECO_STACKPREFIX}_kibana.rule=PathPrefix("/${CONTECO_URLPREFIX}/kibana")]
+${CONTECO_DC_EKG_UI_KIBANA_COMPOSE_EXTENSIONS}
+# END SERVICE nginx.rewrite
+
+networks: {${CONTECO_NETWORKGLOBAL}_overlay: { external: true }, ${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {}
+${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

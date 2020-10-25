@@ -1,0 +1,28 @@
+- type: http
+  id: external_processor_streamsets_endpoint
+  name: Processor StreamSets External
+  hosts: ["http://${CONTECO_HOSTNAME}/package/processor/streamsets"]
+  check.response.status: [301]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: streamsets
+    type: external
+    service: streamsets
+    area: endpoint
+
+
+
+
+- type: http
+  id: internal_processor_streamsets_endpoint
+  name: Processor StreamSets Internal
+  hosts: ["http://package_metrics_monitor_processor_streamsets:18630"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: streamsets
+    type: internal
+    service: streamsets
+    area: endpoint

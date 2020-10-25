@@ -1,0 +1,5 @@
+ekg_elasticsearch_volume:/usr/share/elasticsearch/data
+ekg_grafana_volume:/var/lib/grafana
+ksqldb_ksql_server_queries_volume:/conteco/pwd
+export_streamsets_volume:/data
+

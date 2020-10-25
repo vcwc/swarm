@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+
+prefix="module_swarm_journal_$2"
+
+if [[ "module_swarm_journal_ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_ekg_elasticsearch_volume
+	fi
+	
+if [[ "module_swarm_journal_ekg_grafana_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_ekg_grafana_volume
+	fi
+	
+if [[ "module_swarm_journal_ingest_logs_journalbeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_ingest_logs_journalbeat_volume
+	fi
+	
+if [[ "module_swarm_journal_ksqldb_ksql_server_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_ksqldb_ksql_server_queries_volume
+	fi
+	
+if [[ "module_swarm_journal_ksqldb_dev_ksql_server_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_ksqldb_dev_ksql_server_queries_volume
+	fi
+	
+if [[ "module_swarm_journal_kz_kafka_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_kz_kafka_secrets_volume
+	fi
+	
+if [[ "module_swarm_journal_kz_kafka_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_kz_kafka_data_volume
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_kz_zookeeper_secrets_volume
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_kz_zookeeper_data_volume
+	fi
+	
+if [[ "module_swarm_journal_kz_zookeeper_log_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_kz_zookeeper_log_volume
+	fi
+	
+if [[ "module_swarm_journal_metrics_node_metrics_node_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_metrics_node_metrics_node_volume
+	fi
+	
+if [[ "module_swarm_journal_metrics_overlay_metrics_overlay_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_metrics_overlay_metrics_overlay_volume
+	fi
+	
+if [[ "module_swarm_journal_schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_schema_registry_schema_registry_secrets_volume
+	fi
+	
+if [[ "module_swarm_journal_export_streamsets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create module_swarm_journal_export_streamsets_volume
+	fi
+	
+if [[ "module_swarm_journal_ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+			executionplane --silent docker run -v module_swarm_journal_ekg_elasticsearch_volume:/usr/share/elasticsearch/data ${CONTECO_REGISTRY}$1 tar -C / -xvf /modeco/volumes/ekg_elasticsearch_volume.tar
+		fi
+		
+if [[ "module_swarm_journal_ekg_grafana_volume" == "$prefix"* ]] ; then
+			executionplane --silent docker run -v module_swarm_journal_ekg_grafana_volume:/var/lib/grafana ${CONTECO_REGISTRY}$1 tar -C / -xvf /modeco/volumes/ekg_grafana_volume.tar
+		fi
+		
+if [[ "module_swarm_journal_ksqldb_ksql_server_queries_volume" == "$prefix"* ]] ; then
+			executionplane --silent docker run -v module_swarm_journal_ksqldb_ksql_server_queries_volume:/conteco/pwd ${CONTECO_REGISTRY}$1 cp -r /modeco/volumes/ksqldb_ksql_server_queries_volume/* /conteco/pwd
+		fi
+		
+if [[ "module_swarm_journal_export_streamsets_volume" == "$prefix"* ]] ; then
+			executionplane --silent docker run -v module_swarm_journal_export_streamsets_volume:/data ${CONTECO_REGISTRY}$1 tar -C / -xvf /modeco/volumes/export_streamsets_volume.tar
+		fi
+		

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+
+
+  ######################################################
+  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
+  ######################################################
+
+#!/usr/bin/env bash
+
+
+	executionplane --silent docker volume create swarm_logs_ekg_elasticsearch_volume
+	
+	executionplane --silent docker volume create swarm_logs_ekg_grafana_volume
+	
+	executionplane --silent docker volume create swarm_logs_ingest_container_logs_filebeat_volume
+	
+	executionplane --silent docker volume create swarm_logs_kz_kafka_secrets_volume
+	
+	executionplane --silent docker volume create swarm_logs_kz_kafka_data_volume
+	
+	executionplane --silent docker volume create swarm_logs_kz_zookeeper_secrets_volume
+	
+	executionplane --silent docker volume create swarm_logs_kz_zookeeper_data_volume
+	
+	executionplane --silent docker volume create swarm_logs_kz_zookeeper_log_volume
+	
+	executionplane --silent docker volume create swarm_logs_metrics_monitor_heartbeat_data_volume
+	
+	executionplane --silent docker volume create swarm_logs_metrics_monitor_heartbeat_monitors_volume
+	
+	executionplane --silent docker volume create swarm_logs_processor_streamsets_volume
+	
+executionplane --silent docker run -v swarm_logs_ekg_elasticsearch_volume:/usr/share/elasticsearch/data ${CONTECO_REGISTRY}$1 tar -C / -xvf /soleco/_component/_volumes/ekg_elasticsearch_volume.tar
+		
+executionplane --silent docker run -v swarm_logs_metrics_monitor_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d ${CONTECO_REGISTRY}$1 cp -r /soleco/_component/_volumes/metrics_monitor_heartbeat_monitors_volume/* /usr/share/heartbeat/monitors.d
+		
+executionplane --silent docker run -v swarm_logs_processor_streamsets_volume:/data ${CONTECO_REGISTRY}$1 tar -C / -xvf /soleco/_component/_volumes/processor_streamsets_volume.tar
+		
+#!/usr/bin/env bash
+
+
+	executionplane --silent docker volume create swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume
+	
+executionplane --silent docker run -v swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume:/conteco/pwd ${CONTECO_REGISTRY}$1 cp -r /soleco/api/_component/_volumes/rest_elasticsearch_rest_elasticsearch_data_volume/* /conteco/pwd
+		

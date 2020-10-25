@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+##### START MOULE CONFIGURATION KEYVALUES #####
+##### END MOULE CONFIGURATION KEYVALUES #####
+#!/usr/bin/env bash
+
+##### START COMPONENT CONFIGURATION #####
+export SOLECO_MODULE="swarm.g1"
+export SOLECO_MODULE_VERSION=""
+export SOLECO_HIDE_COMPONENT="false"
+##### END COMPONENT CONFIGURATION #####

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+	executionplane --silent docker volume create swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume
+	
+executionplane --silent docker run -v swarm_logs_rest_elasticsearch_rest_elasticsearch_data_volume:/conteco/pwd ${CONTECO_REGISTRY}$1 cp -r /soleco/api/_component/_volumes/rest_elasticsearch_rest_elasticsearch_data_volume/* /conteco/pwd
+		

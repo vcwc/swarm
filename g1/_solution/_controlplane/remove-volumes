@@ -1,0 +1,206 @@
+#!/usr/bin/env bash
+
+
+
+  ######################################################
+  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
+  ######################################################
+
+#!/usr/bin/env bash
+
+
+
+executionplane --silent docker container prune --force
+
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_ekg_elasticsearch_volume"
+	result=$(docker volume ls | grep "swarm_g1_ekg_elasticsearch_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_ekg_grafana_volume"
+	result=$(docker volume ls | grep "swarm_g1_ekg_grafana_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_ingest_container_logs_filebeat_volume"
+	result=$(docker volume ls | grep "swarm_g1_ingest_container_logs_filebeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_ingest_container_settings_filebeat_volume"
+	result=$(docker volume ls | grep "swarm_g1_ingest_container_settings_filebeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_ingest_journalctl_filebeat_volume"
+	result=$(docker volume ls | grep "swarm_g1_ingest_journalctl_filebeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_kz_kafka_secrets_volume"
+	result=$(docker volume ls | grep "swarm_g1_kz_kafka_secrets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_kz_kafka_data_volume"
+	result=$(docker volume ls | grep "swarm_g1_kz_kafka_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_kz_zookeeper_secrets_volume"
+	result=$(docker volume ls | grep "swarm_g1_kz_zookeeper_secrets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_kz_zookeeper_data_volume"
+	result=$(docker volume ls | grep "swarm_g1_kz_zookeeper_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_kz_zookeeper_log_volume"
+	result=$(docker volume ls | grep "swarm_g1_kz_zookeeper_log_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_metrics_monitor_heartbeat_data_volume"
+	result=$(docker volume ls | grep "swarm_g1_metrics_monitor_heartbeat_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_metrics_monitor_heartbeat_monitors_volume"
+	result=$(docker volume ls | grep "swarm_g1_metrics_monitor_heartbeat_monitors_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_metrics_node_metrics_node_volume"
+	result=$(docker volume ls | grep "swarm_g1_metrics_node_metrics_node_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_metrics_overlay_metrics_overlay_volume"
+	result=$(docker volume ls | grep "swarm_g1_metrics_overlay_metrics_overlay_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_export_streamsets_volume"
+	result=$(docker volume ls | grep "swarm_g1_export_streamsets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "swarm_g1_processor_streamsets_volume"
+	result=$(docker volume ls | grep "swarm_g1_processor_streamsets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	

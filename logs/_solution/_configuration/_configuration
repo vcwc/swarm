@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+##### START COMPONENT CONFIGURATION #####
+export SOLECO_MODULE="swarm.logs"
+export SOLECO_MODULE_VERSION=""
+export SOLECO_HIDE_COMPONENT="false"
+##### END COMPONENT CONFIGURATION #####

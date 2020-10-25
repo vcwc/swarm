@@ -1,0 +1,79 @@
+- type: http
+  id: external_ekg_elasticsearch_endpoint
+  name: EKG ElasticSearch External
+  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/ekg/elasticsearch"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: external
+    service: elasticsearch
+    area: rest_api
+
+- type: http
+  id: external_ekg_grafana_endpoint
+  name: EKG grafana External
+  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/ekg/grafana"]
+  check.response.status: [301]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: external
+    service: kibana
+    area: endpoint
+
+- type: http
+  id: external_ekg_kibana_endpoint
+  name: EKG Kibana External
+  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/ekg/kibana"]
+  check.response.status: [301]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: external
+    service: kibana
+    area: endpoint
+
+
+
+- type: http
+  id: internal_ekg_elasticsearch_endpoint
+  name: EKG ElasticSearch Internal
+  hosts: ["http://${MODECO_MODULEPREFIX}_ekg_elasticsearch:9200"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: internal
+    service: elasticsearchhttp://
+    area: rest_api
+
+- type: http
+  id: internal_ekg_grafana_endpoint
+  name: EKG Grafana Internal
+  hosts: ["http://${MODECO_MODULEPREFIX}_ekg_grafana:3000"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: internal
+    service: grafana
+    area: endpoint
+
+- type: http
+  id: internal_ekg_kibana_endpoint
+  name: EKG Kibana Internal
+  hosts: ["http://${MODECO_MODULEPREFIX}_ekg_kibana:5601"]
+  check.response.status: [302]
+  schedule: '@every 30s'
+  fields:
+    scope: module
+    stack: ekg
+    type: internal
+    service: kibana
+    area: endpoint

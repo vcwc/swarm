@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+
+prefix="module_swarm_logs_$2"
+
+
+executionplane --silent docker container prune --force
+
+if [[ "module_swarm_logs_ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_ekg_elasticsearch_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_ekg_elasticsearch_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_ekg_grafana_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_ekg_grafana_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_ekg_grafana_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_ingest_container_logs_filebeat_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_ingest_container_logs_filebeat_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_ingest_container_logs_filebeat_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_kz_kafka_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_kz_kafka_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_kz_kafka_secrets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_kz_kafka_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_kz_kafka_data_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_kz_kafka_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_kz_zookeeper_secrets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_kz_zookeeper_secrets_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_kz_zookeeper_secrets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_kz_zookeeper_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_kz_zookeeper_data_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_kz_zookeeper_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_kz_zookeeper_log_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_kz_zookeeper_log_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_kz_zookeeper_log_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_metrics_monitor_heartbeat_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_metrics_monitor_heartbeat_data_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_metrics_monitor_heartbeat_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_metrics_monitor_heartbeat_monitors_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_metrics_monitor_heartbeat_monitors_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_metrics_monitor_heartbeat_monitors_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_swarm_logs_processor_streamsets_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_swarm_logs_processor_streamsets_volume"
+			result=$(docker volume ls | grep "module_swarm_logs_processor_streamsets_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	

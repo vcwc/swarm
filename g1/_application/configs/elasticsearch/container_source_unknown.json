@@ -1,0 +1,89 @@
+PUT _template/container_source_unknown
+{
+  "order" : 0,
+  "index_patterns" : [
+    "container_source_unknown_*"
+  ],
+  "settings" : {
+    "index" : {
+      "number_of_shards" : "1"
+    }
+  },
+  "mappings" : {
+    "properties" : {
+      "containerlid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "node" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "@timestamp" : {
+        "type" : "date"
+      },
+      "ecs" : {
+        "properties" : {
+          "version" : {
+            "index" : false,
+            "type" : "text"
+          }
+        }
+      },
+      "level" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "stream" : {
+        "index" : false,
+        "type" : "text"
+      },
+      "origin" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "topic" : {
+        "index" : false,
+        "type" : "text"
+      },
+      "source" : {
+        "index" : false,
+        "type" : "text"
+      },
+      "containerid" : {
+        "type" : "text",
+        "fields" : {
+          "keyword" : {
+            "ignore_above" : 256,
+            "type" : "keyword"
+          }
+        }
+      },
+      "message" : {
+        "index" : false,
+        "type" : "text"
+      }
+    }
+  },
+  "aliases" : { }
+}

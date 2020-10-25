@@ -1,0 +1,17 @@
+#!/usr/bi/env bash
+
+mkdir /infometis
+mkdir /infometis/journalctl
+mkdir /infometis/journalctl/data
+
+cp journal.output-to-log.service /infometis/journalctl/journal.output-to-log.service
+cp journalctl-output-to-log /infometis/journalctl/journalctl-output-to-log
+cp output-to-log /infometis/journalctl/output-to-log
+
+chmod 744 /infometis/journalctl/*
+ln -s /infometis/journalctl/journal.output-to-log.service /etc/systemd/system/journal.output-to-log.service
+
+systemctl daemon-reload
+systemctl enable journal.output-to-log.service
+systemctl start journal.output-to-log.service
+systemctl status journal.output-to-log.service

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+##### START MOULE CONFIGURATION KEYVALUES #####
+export MODECO_INGEST_FILE_ENVIRONMENT_FILEPATHS="/conteco/pwd/*.json"
+export MODECO_INGEST_FILE_ENVIRONMENT_FILEPATHS_MAPPING=",'/var/lib/docker/containers:/conteco/pwd:r'"
+export MODECO_INGEST_FILE_ENVIRONMENT_OUTPUT_CONFIG_KAFKA_TOPIC="ingest_file"
+##### END MOULE CONFIGURATION KEYVALUES #####

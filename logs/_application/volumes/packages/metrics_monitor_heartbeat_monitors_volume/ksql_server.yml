@@ -1,0 +1,28 @@
+- type: http
+  id: external_ksql_ksql_server_endpoint
+  name: KSQL Server External
+  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: ksql
+    type: external
+    service: ksql_server
+    area: endpoint
+
+
+
+
+- type: http
+  id: internal_ksql_ksql_server_endpoint
+  name: KSQL Server Internal
+  hosts: ["http://package_metrics_monitor_ksql_ksql_server:8088"]
+  check.response.status: [200]
+  schedule: '@every 30s'
+  fields:
+    scope: "package_metrics_monitor"
+    stack: ksql
+    type: internal
+    service: ksql_server
+    area: endpoint
