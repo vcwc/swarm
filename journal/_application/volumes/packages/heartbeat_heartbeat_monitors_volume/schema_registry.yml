@@ -1,7 +1,7 @@
 - type: http
   id: external_schema_registry_endpoint
   name: Schema Registry External
-  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/schema_registry/rest"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/${MODECO_URLPREFIX}/schema_registry/rest"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:
@@ -17,7 +17,7 @@
 - type: http
   id: internal_schema_registry_endpoint
   name: Schema Registry Internal
-  hosts: ["http://${MODECO_MODULEPREFIX}_schema_registry:8081"]
+  hosts: ["http://${VCW_STACK_MODULEPREFIX}_schema_registry:8081"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:

@@ -9,7 +9,7 @@ services:
     command: [${REST_ELASTICSEARCH_COMMAND}]
     volumes: ['${CONTECO_STACKPREFIX}_rest_elasticsearch_data_volume:/conteco/pwd'${REST_ELASTICSEARCH_VOLUMES_MAPPINGS}]
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: ${REST_ELASTICSEARCH_DEPLOY_MODE}
       resources:
@@ -21,6 +21,6 @@ services:
 ${REST_ELASTICSEARCH_COMPOSE_EXTENSIONS}
 # END SERVICE rest.elasticsearch
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_rest_elasticsearch_data_volume: { external: true }}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

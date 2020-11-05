@@ -1,7 +1,7 @@
 - type: http
   id: external_schema_registry_endpoint
   name: Schema Registry External
-  hosts: ["http://${CONTECO_HOSTNAME}/package/schema_registry/rest"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/package/schema_registry/rest"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:

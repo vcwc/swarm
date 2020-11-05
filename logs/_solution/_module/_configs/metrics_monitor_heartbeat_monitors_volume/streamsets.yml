@@ -1,11 +1,11 @@
 - type: http
   id: external_processor_streamsets_endpoint
   name: Processor StreamSets External
-  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/processor/streamsets"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/${MODECO_URLPREFIX}/processor/streamsets"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     type: external
     service: streamsets
     area: endpoint
@@ -13,11 +13,11 @@
 - type: http
   id: external_export_streamsets_endpoint
   name: Export StreamSets External
-  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/export/streamsets"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/${MODECO_URLPREFIX}/export/streamsets"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     type: external
     service: streamsets
     area: endpoint
@@ -30,11 +30,11 @@ $MODECO_EKG_KIBANA_ENDPOINT_URL
 - type: http
   id: internal_export_streamsets_endpoint
   name: Export StreamSets Internal
-  hosts: ["http://${MODECO_MODULEPREFIX}_export_streamsets:18630"]
+  hosts: ["http://${VCW_STACK_MODULEPREFIX}_export_streamsets:18630"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     type: internal
     service: streamsets
     area: endpoint
@@ -42,11 +42,11 @@ $MODECO_EKG_KIBANA_ENDPOINT_URL
 - type: http
   id: internal_processor_streamsets_endpoint
   name: Processor StreamSets Internal
-  hosts: ["http://${MODECO_MODULEPREFIX}_processor_streamsets:18630"]
+  hosts: ["http://${VCW_STACK_MODULEPREFIX}_processor_streamsets:18630"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     type: internal
     service: streamsets
     area: endpoint

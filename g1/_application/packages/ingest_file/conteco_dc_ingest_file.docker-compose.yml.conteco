@@ -9,7 +9,7 @@ services:
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_filebeat_data_volume:/usr/share/filebeat/data','${CONTECO_STACKPREFIX}_filebeat_ingest_volume:/conteco/pwd','/etc:/hostfs/etc:ro'${CONTECO_DC_INGEST_FILE_ENVIRONMENT_FILEPATHS_MAPPING}]
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: ${CONTECO_DC_INGEST_FILE_DEPLOY_MODE}
       resources:
@@ -20,6 +20,6 @@ services:
 ${CONTECO_DC_INGEST_FILE_COMPOSE_EXTENSIONS}
 # END SERVICE filebeat.file
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_filebeat_data_volume: { external: true },${CONTECO_STACKPREFIX}_filebeat_ingest_volume: { external: true }}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

@@ -1,7 +1,7 @@
 - type: http
   id: external_processor_streamsets_endpoint
   name: Processor StreamSets External
-  hosts: ["http://${CONTECO_HOSTNAME}/package/processor/streamsets"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/package/processor/streamsets"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:

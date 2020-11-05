@@ -9,7 +9,7 @@ services:
     command: []
     volumes: ['/etc:/hostfs/etc:ro','${CONTECO_STACKPREFIX}_metrics_overlay_volume:/usr/share/metricbeat/data']
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -20,6 +20,6 @@ services:
 ${CONTECO_DC_METRICS_OVERLAY_COMPOSE_EXTENSIONS}
 # END SERVICE metricbeat.overlay
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_metrics_overlay_volume: { external: true }}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

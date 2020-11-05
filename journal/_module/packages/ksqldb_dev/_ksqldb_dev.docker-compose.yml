@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE vcwc/confluent_ksqldb
+  ksqldb:
+    image: ${VCW_REGISTRY}confluentinc/ksqldb-server:0.12.0
+    environment: ['KSQL_BOOTSTRAP_SERVERS=${KSQLDB_DEV_MODULE_BOOTSTRAP_SERVERS}','KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE=true','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE=true','KSQL_KSQL_SERVICE_ID=${KSQLDB_DEV_MODULE_KSQL_SERVICE_ID}'${KSQLDB_DEV_MODE}]
+    command: []
+    volumes: [${VCW_STACK_GLOBAL_STACKPREFIX}_ksql_queries_volume:/vcw/pwd]
+    ports: [${KSQLDB_DEV_PORTS}]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${KSQLDB_DEV_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${KSQLDB_DEV_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${KSQLDB_DEV_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/confluent_ksqldb
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_ksql_queries_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

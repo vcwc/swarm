@@ -1,7 +1,7 @@
 - type: http
   id: external_ksql_ksql_server_endpoint
   name: KSQL Server External
-  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}:"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:

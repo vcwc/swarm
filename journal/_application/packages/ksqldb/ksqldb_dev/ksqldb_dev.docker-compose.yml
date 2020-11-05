@@ -9,7 +9,7 @@ services:
     command: []
     volumes: [${CONTECO_STACKPREFIX}_ksql_server_queries_volume:/conteco/pwd]
     ports: [${KSQLDB_DEV_PORTS}]
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -20,6 +20,6 @@ services:
 ${KSQLDB_DEV_COMPOSE_EXTENSIONS}
 # END SERVICE ksqldb_server.base
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_ksql_server_queries_volume: { external: true }}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

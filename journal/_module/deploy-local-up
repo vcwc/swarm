@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_vcwc_swarm_journal__$1"
+prefix="vcw_module_vcwc_swarm_journal__$1"
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ekg_elasticsearch_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_grafana_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ekg_grafana_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__export_streamsets_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ksqldb_ksqldb_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ksqldb_ksqldb_queries_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__kz_kafka_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_kafka_secrets_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__kz_kafka_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_kafka_data_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__kz_zookeeper_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_zookeeper_secrets_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__kz_zookeeper_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_zookeeper_data_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__kz_zookeeper_log_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_zookeeper_log_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_elasticsearch_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ekg_elasticsearch_volume:/usr/share/elasticsearch/data ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/ekg_elasticsearch_volume.tar
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_grafana_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ekg_grafana_volume:/var/lib/grafana ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/ekg_grafana_volume.tar
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/ekg_nginx_config_volume/* /vcw/pwd
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__export_streamsets_volume:/data ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/export_streamsets_volume.tar
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/ingest_journal_journalbeat_config/* /vcw/pwd
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ksqldb_ksqldb_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ksqldb_ksqldb_queries_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/ksqldb_ksqldb_queries_volume/* /vcw/pwd
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/ksqldb_dev_ksqldb_queries_volume.tar
+fi

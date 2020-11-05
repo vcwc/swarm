@@ -1,7 +1,7 @@
 - type: http
   id: external_processor_streamsets_endpoint
   name: Processor StreamSets External
-  hosts: ["http://${CONTECO_HOSTNAME}/swarm/processor/streamsets"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/swarm/processor/streamsets"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:
@@ -13,7 +13,7 @@
 - type: http
   id: external_export_streamsets_endpoint
   name: Export StreamSets External
-  hosts: ["http://${CONTECO_HOSTNAME}/swarm/export/streamsets"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/swarm/export/streamsets"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:

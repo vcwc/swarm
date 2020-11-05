@@ -2,11 +2,11 @@
 - type: http
   id: external_ekg_kibana_endpoint
   name: EKG Kibana External
-  hosts: ["http://${MODECO_HOSTNAME}/${MODECO_URLPREFIX}/ekg/kibana"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}/${MODECO_URLPREFIX}/ekg/kibana"]
   check.response.status: [301]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     stack: ekg
     type: external
     service: kibana
@@ -17,11 +17,11 @@
 - type: http
   id: internal_ekg_elasticsearch_endpoint
   name: EKG ElasticSearch Internal
-  hosts: ["http://${MODECO_MODULEPREFIX}_ekg_elasticsearch:9200"]
+  hosts: ["http://${VCW_STACK_MODULEPREFIX}_ekg_elasticsearch:9200"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     stack: ekg
     type: internal
     service: elasticsearchhttp://
@@ -30,11 +30,11 @@
 - type: http
   id: internal_ekg_kibana_endpoint
   name: EKG Kibana Internal
-  hosts: ["http://${MODECO_MODULEPREFIX}_ekg_kibana:5601"]
+  hosts: ["http://${VCW_STACK_MODULEPREFIX}_ekg_kibana:5601"]
   check.response.status: [302]
   schedule: '@every 30s'
   fields:
-    scope: "${MODECO_STACKSCOPE}"
+    scope: "${VCW_STACK_MODULE_URLPREFIX}"
     stack: ekg
     type: internal
     service: kibana

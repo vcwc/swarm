@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
-##### START MOULE CONFIGURATION KEYVALUES #####
-##### END MOULE CONFIGURATION KEYVALUES #####
+# START CONFIGURATION
+DOLLAR='$'
+export VCW_MODULE_PACKAGES="\
+ekg:vcwc/streamsets/traefik,\
+export:vcwc/streamsets/traefik"
+# END CONFIGURATION

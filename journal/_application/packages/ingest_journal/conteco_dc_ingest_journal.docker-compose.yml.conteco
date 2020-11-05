@@ -9,7 +9,7 @@ services:
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_journalbeat_volume:/usr/share/journalbeat/data','/etc:/hostfs/etc:ro'${CONTECO_DC_INGEST_JOURNAL_ENVIRONMENT_FILEPATHS_MAPPING}]
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: ${CONTECO_DC_INGEST_JOURNAL_DEPLOY_MODE}
       resources:
@@ -20,6 +20,6 @@ services:
 ${CONTECO_DC_INGEST_JOURNAL_COMPOSE_EXTENSIONS}
 # END SERVICE journalbeat.base
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_journalbeat_volume: { external: true }}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}

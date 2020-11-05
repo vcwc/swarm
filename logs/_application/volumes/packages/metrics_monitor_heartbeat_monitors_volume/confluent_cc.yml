@@ -1,7 +1,7 @@
 - type: http
   id: external_confluent_control_center_endpoint
   name: Confluent Control Center External
-  hosts: ["http://${CONTECO_HOSTNAME}:"]
+  hosts: ["http://${VCW_STACK_HOSTNAME}:"]
   check.response.status: [200]
   schedule: '@every 30s'
   fields:

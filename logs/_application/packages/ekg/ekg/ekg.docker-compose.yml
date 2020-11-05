@@ -9,7 +9,7 @@ services:
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_elasticsearch_volume:/usr/share/elasticsearch/data']
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -27,7 +27,7 @@ ${EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
     command: []
     volumes: []
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -45,7 +45,7 @@ ${EKG_KIBANA_COMPOSE_EXTENSIONS}
     command: []
     volumes: ['${CONTECO_STACKPREFIX}_grafana_volume:/var/lib/grafana']
     ports: []
-    networks: [${CONTECO_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -56,7 +56,7 @@ ${EKG_KIBANA_COMPOSE_EXTENSIONS}
 ${EKG_GRAFANA_COMPOSE_EXTENSIONS}
 # END SERVICE grafana.base
 
-networks: {${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${CONTECO_STACKPREFIX}_elasticsearch_volume: { external: true },${CONTECO_STACKPREFIX}_grafana_volume: { external: true },}
 ${CONTECO_DC_GLOBAL_COMPOSE_EXTENSIONS}
 

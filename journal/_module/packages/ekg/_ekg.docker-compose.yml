@@ -1,0 +1,62 @@
+---
+version: '3'
+services:
+
+# START SERVICE vcwc/elastic/search
+  elasticsearch:
+    image: ${VCW_REGISTRY}elasticsearch:7.9.2
+    environment: ['cluster.name=elasticsearch', 'bootstrap.memory_lock=true', ES_JAVA_OPTS=-Xms${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xmx${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}, 'discovery.type=single-node']
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume:/usr/share/elasticsearch/data']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/elastic/search
+
+# START SERVICE vcwc/elastic/kibana
+  kibana:
+    image: ${VCW_REGISTRY}kibana:7.9.2
+    environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=/${VCW_STACK_GLOBAL_URLPREFIX}/kibana', 'XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=false', 'LOGGING_VERBOSE=false']
+    command: []
+    volumes: []
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${EKG_KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${EKG_KIBANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${EKG_KIBANA_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/elastic/kibana
+
+# START SERVICE vcwc/grafana
+  grafana:
+    image: ${VCW_REGISTRY}grafana/grafana:7.2.1
+    environment: ['GF_SERVER_SERVE_FROM_SUB_PATH=true', 'GF_SECURITY_ALLOW_EMBEDDING=true', 'GF_AUTH_ANONYMOUS_ENABLED=true', 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.', 'GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer', 'GF_LOG_MODE=console', 'GF_LOG_CONSOLE_FORMAT=text', 'GF_LOG_LEVEL=warn', 'GF_SERVER_ROOT_URL=/${VCW_STACK_GLOBAL_URLPREFIX}/grafana']
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume:/var/lib/grafana']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${EKG_GRAFANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${EKG_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${EKG_GRAFANA_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/grafana
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume: { external: true },}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
+

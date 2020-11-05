@@ -2,7 +2,7 @@
 - type: tcp
   id: internal_kz_kafka
   name: KZ Kafka Internal
-  hosts: ["${MODECO_MODULEPREFIX}_kz_kafka"]
+  hosts: ["${VCW_STACK_MODULEPREFIX}_kz_kafka"]
   ports: [9092]
 #  check.send: 'Hello World'
 #  check.receive: 'Hello World'
@@ -17,7 +17,7 @@
 - type: tcp
   id: internal_kz_zookeeper
   name: KZ Zookeeper Internal
-  hosts: ["${MODECO_MODULEPREFIX}_kz_zookeeper"]
+  hosts: ["${VCW_STACK_MODULEPREFIX}_kz_zookeeper"]
   ports: [2181]
 #  check.send: 'Hello World'
 #  check.receive: 'Hello World'
