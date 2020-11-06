@@ -1,0 +1,41 @@
+journalbeat.inputs:
+- paths: ${ES_JOURNALBEAT_FILEPATHS:[]}
+  seek: ${ES_JOURNALBEAT_SEEK:cursor}
+  include_matches: ${ES_JOURNALBEAT_INCLUDE_MATCHES:[]}
+
+output.console:
+  enabled: ${ES_JOURNALBEAT_OUTPUT_CONSOLE:false}
+  pretty: false
+
+output.elasticsearch:
+  enabled: ${ES_JOURNALBEAT_OUTPUT_ELASTICSEARCH:false}
+  hosts: ${ES_JOURNALBEAT_OUTPUT_CONFIG_ELASTICSEARCH_HOSTS:"elasticsearch:9200"}
+  index: "${ES_JOURNALBEAT_OUTPUT_CONFIG_ELASTICSEARCH_INDEX:journalbeat}"
+
+setup.template.name: "${ES_JOURNALBEAT_OUTPUT_CONFIG_ELASTICSEARCH_INDEX:journalbeat}"
+setup.template.pattern: "${ES_JOURNALBEAT_OUTPUT_CONFIG_ELASTICSEARCH_INDEX:journalbeat}"
+
+setup.kibana.host: ${ES_JOURNALBEAT_OUTPUT_CONFIG_KIBANA_HOST:"kibana:5601"}
+setup.dashboards.enabled: ${ES_JOURNALBEAT_OUTPUT_CONFIG_KIBANA_DASHBOARDS:false}
+
+output.logstash:
+  enabled: ${ES_JOURNALBEAT_OUTPUT_LOGSTASH:false}
+  hosts: ${ES_JOURNALBEAT_OUTPUT_CONFIG_LOGSTASH_HOSTS:"logstash:5044"}
+  index: "${ES_JOURNALBEAT_OUTPUT_CONFIG_LOGSTASH_INDEX:'journalbeat'}"
+
+output.kafka:
+  enabled: ${ES_JOURNALBEAT_OUTPUT_KAFKA:false}
+  hosts: ${ES_JOURNALBEAT_OUTPUT_CONFIG_KAFKA_HOSTS:"kafka:9092"}
+  topic: '${ES_JOURNALBEAT_OUTPUT_CONFIG_KAFKA_TOPIC:es_journalbeat_kafka}'
+  version: "2.0.0"
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging.level: ${ES_JOURNALBEAT_LOGGING_LEVEL:warning}
+logging.metrics.enabled: false
+logging.metrics.period: 30s
+logging.json: false

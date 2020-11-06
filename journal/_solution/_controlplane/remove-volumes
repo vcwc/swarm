@@ -1,0 +1,227 @@
+#!/usr/bin/env bash
+
+
+
+  ######################################################
+  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
+  ######################################################
+
+#!/usr/bin/env bash
+
+executionplane --silent docker container prune --force
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ekg_elasticsearch_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ekg_elasticsearch_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ekg_grafana_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ekg_grafana_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ekg_nginx_config_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ekg_nginx_config_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__export_streamsets_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__export_streamsets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ingest_journal_journalbeat_config"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ingest_journal_journalbeat_config")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ingest_journal_journalbeat_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ingest_journal_journalbeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ksqldb_ksqldb_queries_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ksqldb_ksqldb_queries_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__kz_kafka_secrets_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__kz_kafka_secrets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__kz_kafka_data_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__kz_kafka_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__kz_zookeeper_secrets_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__kz_zookeeper_secrets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__kz_zookeeper_data_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__kz_zookeeper_data_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__kz_zookeeper_log_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__kz_zookeeper_log_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__metrics_node_metricbeat_config"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__metrics_node_metricbeat_config")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__metrics_node_metricbeat_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__metrics_node_metricbeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__metrics_overlay_metricbeat_config"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__metrics_overlay_metricbeat_config")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__metrics_overlay_metricbeat_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__metrics_overlay_metricbeat_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	

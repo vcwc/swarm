@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# START CONFIGURATION
-DOLLAR='$'
-export VCW_MODULE_PACKAGES="\
-ekg:vcwc/streamsets/traefik,\
-export:vcwc/streamsets/traefik"
-# END CONFIGURATION

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+executionplane-info "EXECUTING CONTROLPLANE START"
+
+# implementation can be overridden as required by the solution
+# the default implementation executes on all components from the top component down
+run start --recurse $@

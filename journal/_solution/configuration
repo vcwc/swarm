@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+export VCW_SOLUTION_HOSTNAME="${DOLLAR}{VCW_HOSTNAME}"

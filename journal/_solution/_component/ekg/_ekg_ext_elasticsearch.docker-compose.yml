@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+
+# START SERVICE vcwc/nginx/rewrite
+  nginx:
+    image: ${VCW_REGISTRY}vcwc/nginx.base:1.19.3
+    environment: ['VCW_STACK_NGINX_CONF_LOCATION=/${VCW_STACK_GLOBAL_URLPREFIX}/elasticsearch', 'VCW_STACK_NGINX_CONF_PROXY_PASS=${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch:9200']
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_nginx_config_volume:/vcw/pwd']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${EKG_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${EKG_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.loadbalancer.server.port=80,      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.entrypoints=conteco,      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/elasticsearch")]
+${EKG_EXT_ELASTICSEARCH_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/nginx/rewrite
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_nginx_config_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

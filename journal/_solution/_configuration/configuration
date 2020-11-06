@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# START CONFIGURATION
+DOLLAR='$'
+export VCW_SOLUTON_COMPONENT_MODULE="vcwc/swarm/journal"
+export VCW_SOLUTON_HIDE_COMPONENT="false"
+# END CONFIGURATION
