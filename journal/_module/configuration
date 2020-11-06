@@ -9,6 +9,8 @@ ingest_journal:vcwc/elastic/journalbeat,\
 ksqldb:vcwc/confluent_ksqldb,\
 ksqldb_dev:vcwc/confluent_ksqldb,\
 kz:vcwc/confluent/kafka/kz,\
+metrics_node:vcwc/elastic/metricbeat/node,\
+metrics_overlay:vcwc/elastic/metricbeat/overlay,\
 schema_registry:vcwc/confluent/schema_registry"
 # END CONFIGURATION
 

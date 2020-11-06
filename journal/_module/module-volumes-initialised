@@ -5,3 +5,5 @@ export_streamsets_volume:/data
 ingest_journal_journalbeat_config:/vcw/pwd
 ksqldb_ksqldb_queries_volume:/vcw/pwd
 ksqldb_dev_ksqldb_queries_volume:/vcw/pwd
+metrics_node_metricbeat_config:/vcw/pwd
+metrics_overlay_metricbeat_config:/vcw/pwd

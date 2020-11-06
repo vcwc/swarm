@@ -3,9 +3,10 @@ start/stop,ekg,ekg_rest_elasticsearch
 start/stop,ekg,ekg_ui_grafana
 start/stop,ekg,ekg_ui_kibana
 boot/shutdown,export,export
-start/stop,export,export_ui_streamsets
 start/stop,ingest_journal,ingest_journal
 boot/shutdown,ksqldb,ksqldb
 start/stop,ksqldb_dev,ksqldb_dev
 boot/shutdown,kz,kz
+start/stop,metrics_node,metrics_node
+start/stop,metrics_overlay,metrics_overlay
 boot/shutdown,schema_registry,schema_registry

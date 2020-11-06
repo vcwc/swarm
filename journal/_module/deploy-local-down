@@ -187,6 +187,62 @@ if [[ "vcw_module_vcwc_swarm_journal__kz_zookeeper_log_volume" == "$prefix"* ]] 
 	done;
 fi
 
+if [[ "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config"
+		result=$(docker volume ls | grep "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_volume"
+		result=$(docker volume ls | grep "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config"
+		result=$(docker volume ls | grep "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_volume"
+		result=$(docker volume ls | grep "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
 if [[ "vcw_module_vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
 	continue="true"
 	while [[ "true" == "$continue" ]] ;

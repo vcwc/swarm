@@ -55,6 +55,22 @@ if [[ "vcw_module_vcwc_swarm_journal__kz_zookeeper_log_volume" == "$prefix"* ]] 
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__kz_zookeeper_log_volume
 fi
 
+if [[ "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_volume
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_volume
+fi
+
 if [[ "vcw_module_vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__schema_registry_schema_registry_secrets_volume
 fi
@@ -85,4 +101,12 @@ fi
 
 if [[ "vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ksqldb_dev_ksqldb_queries_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/ksqldb_dev_ksqldb_queries_volume.tar
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__metrics_node_metricbeat_config:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/metrics_node_metricbeat_config/* /vcw/pwd
+fi
+
+if [[ "vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__metrics_overlay_metricbeat_config:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/metrics_overlay_metricbeat_config/* /vcw/pwd
 fi

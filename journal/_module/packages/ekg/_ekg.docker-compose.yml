@@ -41,7 +41,7 @@ ${EKG_KIBANA_COMPOSE_EXTENSIONS}
 # START SERVICE vcwc/grafana
   grafana:
     image: ${VCW_REGISTRY}grafana/grafana:7.2.1
-    environment: ['GF_SERVER_SERVE_FROM_SUB_PATH=true', 'GF_SECURITY_ALLOW_EMBEDDING=true', 'GF_AUTH_ANONYMOUS_ENABLED=true', 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.', 'GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer', 'GF_LOG_MODE=console', 'GF_LOG_CONSOLE_FORMAT=text', 'GF_LOG_LEVEL=warn', 'GF_SERVER_ROOT_URL=/${VCW_STACK_GLOBAL_URLPREFIX}/grafana']
+    environment: ['GF_SERVER_SERVE_FROM_SUB_PATH=true', 'GF_SECURITY_ALLOW_EMBEDDING=true', 'GF_AUTH_ANONYMOUS_ENABLED=true', 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.', 'GF_AUTH_ANONYMOUS_ORG_ROLE=Admin', 'GF_LOG_MODE=console', 'GF_LOG_CONSOLE_FORMAT=text', 'GF_LOG_LEVEL=warn', 'GF_SERVER_ROOT_URL=/${VCW_STACK_GLOBAL_URLPREFIX}/grafana']
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume:/var/lib/grafana']
     ports: []
@@ -59,4 +59,3 @@ ${EKG_GRAFANA_COMPOSE_EXTENSIONS}
 networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume: { external: true },}
 ${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
-
