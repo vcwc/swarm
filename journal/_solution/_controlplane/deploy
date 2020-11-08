@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
+selectedNode="${@: -1}"
 
 executionplane-info "EXECUTING CONTROLPLANE DEPLOY"
 
 # implementation can be overridden as required by the solution
 # the default implementation executes on all components from the top component down
-deploy $@
+
+.solution deploy . $selectedNode
+
+.solution run boot . kz $selectedNode
+
+.solution run boot . ekg $selectedNode
+
+.solution run boot . schema $selectedNode

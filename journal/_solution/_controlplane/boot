@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
+selectedNode="${@: -1}"
 
 executionplane-info "EXECUTING CONTROLPLANE BOOT"
 
-# implementation can be overridden as required by the solution
-# the default implementation executes on all components from the top component down
-run boot --recurse $@
+.solution run boot . export $selectedNode
+
+.solution run start . ingest $selectedNode
+
+.solution run boot . ksqldb $selectedNode
+
+sleep 10;
+
+.solution run start . _ui $selectedNode
+
+.solution run stop . ingest $selectedNode

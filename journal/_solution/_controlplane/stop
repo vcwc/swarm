@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+selectedNode="${@: -1}"
 
 executionplane-info "EXECUTING CONTROLPLANE STOP"
 
-# implementation can be overridden as required by the solution
-# the default implementation executes on all components from the top component down
-run stop --recurse $@
+.solution run stop . ingest $selectedNode
+.solution run stop . metrics $selectedNode

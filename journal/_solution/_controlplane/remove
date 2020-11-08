@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+selectedNode="${@: -1}"
 
 executionplane-info "EXECUTING CONTROLPLANE REMOVE"
 
-# implementation can be overridden as required by the solution
-# the default implementation executes on all components from the top component down
-deploy down $@
+.solution run shutdown . schema $selectedNode
+.solution run shutdown . ekg $selectedNode
+.solution run shutdown . kz $selectedNode
+
+.solution deploy down . $selectedNode
