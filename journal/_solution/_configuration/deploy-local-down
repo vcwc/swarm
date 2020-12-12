@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-
-
-  ######################################################
-  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
-  ######################################################
-
-#!/usr/bin/env bash
-
 executionplane --silent docker container prune --force
 continue="true"
 while [[ "true" == "$continue" ]] ;

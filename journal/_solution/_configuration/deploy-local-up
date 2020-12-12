@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-
-
-  ######################################################
-  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
-  ######################################################
-
-#!/usr/bin/env bash
-
 executionplane --silent docker volume create vcwc_swarm_journal__ekg_elasticsearch_volume
 	
 executionplane --silent docker volume create vcwc_swarm_journal__ekg_grafana_volume

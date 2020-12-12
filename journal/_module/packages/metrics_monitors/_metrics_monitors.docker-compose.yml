@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE vcwc/elastic/heartbeat
+  heartbeat:
+    image: ${VCW_REGISTRY}vcwc/elastic.heartbeat:7.9.2
+    environment: ['ES_HEARTBEAT_LOGGING_LEVEL=${METRICS_MONITORS_MODULE_LOGGING_LEVEL}']
+    command: []
+    volumes: ['/etc:/hostfs/etc:ro','${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_config:/vcw/pwd','${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_data_volume:/usr/share/heartbeat/data','${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${METRICS_MONITORS_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${METRICS_MONITORS_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${METRICS_MONITORS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${METRICS_MONITORS_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/elastic/heartbeat
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_config: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_data_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_heartbeat_monitors_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
