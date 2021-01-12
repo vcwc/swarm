@@ -13,10 +13,9 @@ WITH (KAFKA_TOPIC='swarm_journal_raw', VALUE_FORMAT='JSON');
 
 CREATE STREAM swarm_journal_avro WITH (KAFKA_TOPIC='swarm_journal_avro',VALUE_FORMAT='AVRO') AS
 SELECT  CASE WHEN SUBSTRING(message,1,1) = '{' THEN
-          CASE  WHEN journald->custom->image_name LIKE '%metricbeat%' THEN 'metricbeat'
-                WHEN journald->custom->image_name LIKE '%heartbeat%' THEN 'heartbeat'
+          CASE  WHEN journald->custom->image_name LIKE '%metricbeat%' AND SUBSTRING(message,1,1) = '{' THEN 'metricbeat'
                 WHEN EXTRACTJSONFIELD(message, '$.source') IS NOT NULL THEN EXTRACTJSONFIELD(message, '$.source')
-                ELSE 'unknown' END
+          END
         ELSE 'logs' END AS destination,
         `@timestamp` AS ingested,
         container->id AS containerId,

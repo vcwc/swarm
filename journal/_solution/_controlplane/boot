@@ -11,6 +11,4 @@ executionplane-info "EXECUTING CONTROLPLANE BOOT"
 
 sleep 10;
 
-.solution run start . _ui $selectedNode
-
 .solution run stop . ingest $selectedNode

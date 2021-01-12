@@ -3,6 +3,5 @@ selectedNode="${@: -1}"
 
 executionplane-info "EXECUTING CONTROLPLANE SHUTDOWN"
 
-.solution run stop . _ui $selectedNode
 .solution run shutdown . ksqldb $selectedNode
 .solution run shutdown . export $selectedNode

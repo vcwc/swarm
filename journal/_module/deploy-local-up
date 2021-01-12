@@ -11,10 +11,6 @@ if [[ "vcw_module_vcwc_swarm_journal__ekg_grafana_volume" == "$prefix"* ]] ; the
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ekg_grafana_volume
 fi
 
-if [[ "vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume
-fi
-
 if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__export_streamsets_volume
 fi
@@ -93,10 +89,6 @@ fi
 
 if [[ "vcw_module_vcwc_swarm_journal__ekg_grafana_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ekg_grafana_volume:/var/lib/grafana ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/ekg_grafana_volume.tar
-fi
-
-if [[ "vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__ekg_nginx_config_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/ekg_nginx_config_volume/* /vcw/pwd
 fi
 
 if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]] ; then

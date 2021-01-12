@@ -2,7 +2,7 @@
 version: '3'
 services:
 
-# START SERVICE vcwc/elastic/search
+# START SERVICE vcwc/elastic/search/traefik
   elasticsearch:
     image: ${VCW_REGISTRY}elasticsearch:7.9.2
     environment: ['cluster.name=elasticsearch', 'bootstrap.memory_lock=true', ES_JAVA_OPTS=-Xms${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xmx${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}, 'discovery.type=single-node']
@@ -17,17 +17,24 @@ services:
           memory: '${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
           memory: '${EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-${EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
-# END SERVICE vcwc/elastic/search
 
-# START SERVICE vcwc/elastic/kibana
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX}/elasticsearch,/${VCW_STACK_GLOBAL_URLPREFIX}/elasticsearch/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.loadbalancer.server.port=9200,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.entrypoints=conteco,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/elasticsearch") ]
+${EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/elastic/search/traefik
+
+# START SERVICE vcwc/elastic/kibana/traefik
   kibana:
     image: ${VCW_REGISTRY}kibana:7.9.2
-    environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=/${VCW_STACK_GLOBAL_URLPREFIX}/kibana', 'XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=false', 'LOGGING_VERBOSE=false']
+    environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=/${VCW_STACK_GLOBAL_URLPREFIX}/kibana', 'XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=false', 'LOGGING_VERBOSE=${EKG_KIBANA_MODULE_KIBANA_LOGGING_VERBOSE}']
     command: []
     volumes: []
     ports: []
-    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -35,17 +42,24 @@ ${EKG_ELASTICSEARCH_COMPOSE_EXTENSIONS}
           memory: '${EKG_KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
           memory: '${EKG_KIBANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-${EKG_KIBANA_COMPOSE_EXTENSIONS}
-# END SERVICE vcwc/elastic/kibana
 
-# START SERVICE vcwc/grafana
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX}/kibana,/${VCW_STACK_GLOBAL_URLPREFIX}/kibana/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.loadbalancer.server.port=5601,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_kibana@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.entrypoints=conteco,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/kibana") ]
+${EKG_KIBANA_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/elastic/kibana/traefik
+
+# START SERVICE vcwc/grafana/traefik
   grafana:
     image: ${VCW_REGISTRY}grafana/grafana:7.2.1
-    environment: ['GF_SERVER_SERVE_FROM_SUB_PATH=true', 'GF_SECURITY_ALLOW_EMBEDDING=true', 'GF_AUTH_ANONYMOUS_ENABLED=true', 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.', 'GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer', 'GF_LOG_MODE=console', 'GF_LOG_CONSOLE_FORMAT=text', 'GF_LOG_LEVEL=warn', 'GF_SERVER_ROOT_URL=/${VCW_STACK_GLOBAL_URLPREFIX}/grafana']
+    environment: ['GF_SERVER_SERVE_FROM_SUB_PATH=true', 'GF_SECURITY_ALLOW_EMBEDDING=true', 'GF_AUTH_ANONYMOUS_ENABLED=true', 'GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.', 'GF_AUTH_ANONYMOUS_ORG_ROLE=${EKG_GRAFANA_MODULE_GRAFANA_AUTH_ANONYMOUS_ORG_ROLE}', 'GF_LOG_MODE=console', 'GF_LOG_CONSOLE_FORMAT=text', 'GF_LOG_LEVEL=${EKG_GRAFANA_MODULE_GRAFANA_LOG_LEVEL}', 'GF_SERVER_ROOT_URL=/${VCW_STACK_GLOBAL_URLPREFIX}/grafana']
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume:/var/lib/grafana']
     ports: []
-    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -53,10 +67,15 @@ ${EKG_KIBANA_COMPOSE_EXTENSIONS}
           memory: '${EKG_GRAFANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
           memory: '${EKG_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-${EKG_GRAFANA_COMPOSE_EXTENSIONS}
-# END SERVICE vcwc/grafana
 
-networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
-volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume: { external: true },}
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_grafana.loadbalancer.server.port=3000,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_grafana.entrypoints=conteco,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_grafana.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/grafana")]
+${EKG_GRAFANA_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/grafana/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_grafana_volume: { external: true }}
 ${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
 
