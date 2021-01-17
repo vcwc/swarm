@@ -18,15 +18,15 @@ SELECT  CASE WHEN SUBSTRING(message,1,1) = '{' THEN
           END
         ELSE 'logs' END AS destination,
         `@timestamp` AS ingested,
-        container->id AS containerId,
-        container->name AS containername,
+        CASE WHEN container IS NULL THEN '' ELSE container->id END AS containerId,
+        CASE WHEN container IS NULL THEN '' ELSE container->name END AS containername,
         event->created AS created,
         host->hostname AS node,
-        journald->custom->image_name AS imagename,
+        CASE WHEN journald IS NULL THEN '' ELSE journald->custom->image_name END AS imagename,
         log->syslog->facility_name AS logfacility,
         log->syslog->priority AS logpriority,
         message,
-        process->name AS processname,
+        CASE WHEN process IS NULL THEN '' ELSE process->name END AS processname,
         syslog->identifier AS syslogidentifier,
         systemd->transport AS systemdtransport
 FROM swarm_journal_json
