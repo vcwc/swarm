@@ -1,6 +1,7 @@
 ekg_elasticsearch_volume
 ekg_grafana_volume
 export_streamsets_volume
+export_nginx_config_volume
 ingest_journal_journalbeat_config
 ingest_journal_journalbeat_volume
 ksqldb_ksqldb_queries_volume

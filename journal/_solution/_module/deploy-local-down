@@ -47,6 +47,20 @@ if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]]
 	done;
 fi
 
+if [[ "vcw_module_vcwc_swarm_journal__export_nginx_config_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_vcwc_swarm_journal__export_nginx_config_volume"
+		result=$(docker volume ls | grep "vcw_module_vcwc_swarm_journal__export_nginx_config_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
 if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config" == "$prefix"* ]] ; then
 	continue="true"
 	while [[ "true" == "$continue" ]] ;

@@ -4,7 +4,7 @@
 DOLLAR='$'
 export VCW_MODULE_PACKAGES="\
 ekg:vcwc/elastic/stacks/ekg/traefik,\
-export:vcwc/streamsets,\
+export:vcwc/streamsets/traefik,\
 ingest_journal:vcwc/elastic/journalbeat,\
 ksqldb:vcwc/confluent_ksqldb,\
 ksqldb_dev:vcwc/confluent_ksqldb,\

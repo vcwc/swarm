@@ -8,7 +8,7 @@ services:
     environment: ['SDC_JAVA_OPTS=-Xmx${EXPORT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${EXPORT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}', 'SDC_CONF_HTTP_BINDHOST=0.0.0.0', 'SDC_CONF_HTTP_ENABLE_FORWARDED_REQUESTS=true', 'SDC_CONF_HTTP_AUTHENTICATION=none', 'SDC_CONF_BUNDLE_UPLOAD_ENABLED=false']
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets_volume:/data']
-    ports: [${EXPORT_PORTS}]
+    ports: []
     networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
