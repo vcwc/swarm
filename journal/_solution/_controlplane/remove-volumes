@@ -48,6 +48,18 @@ done;
 continue="true"
 while [[ "true" == "$continue" ]] ;
 do
+	executionplane docker volume rm "vcwc_swarm_journal__export_nginx_config_volume"
+	result=$(docker volume ls | grep "vcwc_swarm_journal__export_nginx_config_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
 	executionplane docker volume rm "vcwc_swarm_journal__ingest_journal_journalbeat_config"
 	result=$(docker volume ls | grep "vcwc_swarm_journal__ingest_journal_journalbeat_config")
 	if [[ "$result" == "" ]] ; then

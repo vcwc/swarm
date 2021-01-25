@@ -1,5 +1,6 @@
 boot/shutdown,ekg,ekg
 boot/shutdown,export,export
+start/stop,export,export_ui_streamsets
 start/stop,ingest_journal,ingest_journal
 boot/shutdown,ksqldb,ksqldb
 start/stop,ksqldb_dev,ksqldb_dev
