@@ -15,10 +15,6 @@ if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]]
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__export_streamsets_volume
 fi
 
-if [[ "vcw_module_vcwc_swarm_journal__export_nginx_config_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__export_nginx_config_volume
-fi
-
 if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config" == "$prefix"* ]] ; then
 	executionplane --silent docker volume create vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config
 fi
@@ -97,10 +93,6 @@ fi
 
 if [[ "vcw_module_vcwc_swarm_journal__export_streamsets_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__export_streamsets_volume:/data ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_module/volumes/export_streamsets_volume.tar
-fi
-
-if [[ "vcw_module_vcwc_swarm_journal__export_nginx_config_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcw_module_vcwc_swarm_journal__export_nginx_config_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_module/volumes/export_nginx_config_volume/* /vcw/pwd
 fi
 
 if [[ "vcw_module_vcwc_swarm_journal__ingest_journal_journalbeat_config" == "$prefix"* ]] ; then

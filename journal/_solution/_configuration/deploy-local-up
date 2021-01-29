@@ -6,8 +6,6 @@ executionplane --silent docker volume create vcwc_swarm_journal__ekg_grafana_vol
 	
 executionplane --silent docker volume create vcwc_swarm_journal__export_streamsets_volume
 	
-executionplane --silent docker volume create vcwc_swarm_journal__export_nginx_config_volume
-	
 executionplane --silent docker volume create vcwc_swarm_journal__ingest_journal_journalbeat_config
 	
 executionplane --silent docker volume create vcwc_swarm_journal__ingest_journal_journalbeat_volume
@@ -50,9 +48,6 @@ executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_swa
 
 
 executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_swarm_journal__export_streamsets_volume:/data ${VCW_REGISTRY}vcwc/controlplane.vcw console untar /source/vcwc/swarm/journal/_solution/_configuration/volumes/export_streamsets_volume.tar
-
-
-executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_swarm_journal__export_nginx_config_volume:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_solution/_configuration/volumes/export_nginx_config_volume/* /vcw/pwd
 
 
 executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_swarm_journal__ingest_journal_journalbeat_config:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/swarm/journal/_solution/_configuration/volumes/ingest_journal_journalbeat_config/* /vcw/pwd

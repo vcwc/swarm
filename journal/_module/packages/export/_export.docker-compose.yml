@@ -2,14 +2,14 @@
 version: '3'
 services:
 
-# START SERVICE vcwc/streamsets
+# START SERVICE vcwc/streamsets/traefik
   streamsets:
-    image: ${VCW_REGISTRY}vcwc/streamsets.base:3.18.1
+    image: ${VCW_REGISTRY}vcwc/streamsets.base:3.16.0
     environment: ['SDC_JAVA_OPTS=-Xmx${EXPORT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${EXPORT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}', 'SDC_CONF_HTTP_BINDHOST=0.0.0.0', 'SDC_CONF_HTTP_ENABLE_FORWARDED_REQUESTS=true', 'SDC_CONF_HTTP_AUTHENTICATION=none', 'SDC_CONF_BUNDLE_UPLOAD_ENABLED=false']
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets_volume:/data']
     ports: []
-    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -17,9 +17,16 @@ services:
           memory: '${EXPORT_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
           memory: '${EXPORT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-${EXPORT_COMPOSE_EXTENSIONS}
-# END SERVICE vcwc/streamsets
 
-networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets,/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.loadbalancer.server.port=18630,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.entrypoints=conteco,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets")]
+${EXPORT_COMPOSE_EXTENSIONS}
+# END SERVICE vcwc/streamsets/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
 volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets_volume: { external: true }}
 ${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
