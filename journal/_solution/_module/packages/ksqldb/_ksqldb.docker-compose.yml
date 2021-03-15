@@ -4,7 +4,7 @@ services:
 
 # START SERVICE vcwc/confluent_ksqldb
   ksqldb:
-    image: ${VCW_REGISTRY}confluentinc/ksqldb-server:0.12.0
+    image: ${VCW_REGISTRY}confluentinc/ksqldb-server:0.15.0
     environment: ['KSQL_BOOTSTRAP_SERVERS=${KSQLDB_MODULE_BOOTSTRAP_SERVERS}','KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE=true','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE=true','KSQL_KSQL_SERVICE_ID=${KSQLDB_MODULE_KSQL_SERVICE_ID}'${KSQLDB_MODE}]
     command: []
     volumes: [${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb_queries_volume:/vcw/pwd]
